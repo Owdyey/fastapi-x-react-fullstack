@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, conint
 
 
 class UserBase(BaseModel):
@@ -23,6 +23,7 @@ class TokenData(BaseModel):
 class ItemCreate(BaseModel):
     name: str
     description: str
+    price: int
 
     model_config ={
         "from_attributes": True

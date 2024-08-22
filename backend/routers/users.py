@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, Response, status, HTTPException
 from sqlalchemy.orm import Session
-from app.models import User
-from app.schemas import UserCreate
-from app.database import get_db
+from models import User
+from schemas import UserCreate
+from database import get_db
 from sqlalchemy.exc import IntegrityError
 from jose import JWTError, jwt
 from passlib.context import CryptContext

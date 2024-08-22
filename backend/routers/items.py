@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, Response, status, HTTPException
 from sqlalchemy.orm import Session
-from app.models import ItemModel
-from app.schemas import ItemCreate
-from app.database import get_db
+from models import ItemModel
+from schemas import ItemCreate
+from database import get_db
 from sqlalchemy.exc import IntegrityError
 
 router = APIRouter(
@@ -40,6 +40,7 @@ async def update_item(id: int, item: ItemCreate, db: Session = Depends(get_db)):
     try:
         db_item.name = item.name
         db_item.description = item.description
+        db_item.price = item.price
     except IntegrityError:
         db.rollback()
         return None
