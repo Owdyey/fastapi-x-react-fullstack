@@ -95,5 +95,4 @@ async def login_user(form_data: OAuth2PasswordRequestForm = Depends(),db: Sessio
 
 @router.post("/verify-token/{token}")
 async def verify_client_token(token: str):
-    verify_token(token=token)
-    return {"msg": "Token is Valid"}
+    return verify_token(token=token)

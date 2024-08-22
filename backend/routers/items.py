@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Response, status, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from models import ItemModel
 from schemas import ItemCreate
@@ -14,6 +14,13 @@ router = APIRouter(
 async def get_all_items(db: Session = Depends(get_db)):
     items = db.query(ItemModel).all()
     return items
+
+
+@router.get("/{id}")
+async def get_post_by_id(id: int, db: Session = Depends(get_db)):
+    db_item = db.query(ItemModel).filter(ItemModel.id == id).first
+    return db_item
+
 
 
 @router.post("/")
